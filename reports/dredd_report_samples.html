@@ -1,12 +1,54 @@
 <h1>Dredd Tests</h1>
-<h2>Pass: POST (201) /v1/auth/login/user</h2>
-<h2>Pass: POST (400) /v1/auth/login/user</h2>
-<h2>Pass: POST (401) /v1/auth/login/user</h2>
+<h2>Fail: POST (201) /v1/auth/login/user</h2>
+<h3>Message</h3>
+<pre><code>statusCode: Expected status code '201', but got '401'.
+
+</code></pre>
+<h3>Request</h3>
+<pre><code>method: POST
+uri: /v1/auth/login/user
+headers: 
+    X-Fields: 
+    Content-Type: application/x-www-form-urlencoded
+    User-Agent: Dredd/13.1.1 (Darwin 18.7.0; x64)
+
+body: 
+username=&amp;pass1=
+
+</code></pre>
+<h3>Expected</h3>
+<pre><code>headers: 
+
+statusCode: 201
+bodySchema: {&quot;properties&quot;:{&quot;access_token&quot;:{&quot;type&quot;:&quot;string&quot;,&quot;description&quot;:&quot;This token is to be used in all subsequent requests&quot;}},&quot;type&quot;:&quot;object&quot;}
+
+</code></pre>
+<h3>Actual</h3>
+<pre><code>statusCode: 401
+headers: 
+    server: openresty/1.15.8.2
+    date: Fri, 05 Jun 2020 19:30:26 GMT
+    content-type: application/json
+    content-length: 46
+    connection: close
+    strict-transport-security: max-age=15724800; includeSubDomains
+    www-authenticate: None
+    access-control-allow-origin: *
+
+bodyEncoding: utf-8
+body: 
+{
+  &quot;message&quot;: &quot;Incorrect username or password&quot;
+}
+
+</code></pre>
+<h2>Skip: POST (400) /v1/auth/login/user</h2>
+<h2>Skip: POST (401) /v1/auth/login/user</h2>
 <hr>
 <h1>Summary</h1>
-<p><strong>Tests completed:</strong> 3 passing,
-0 failing,
+<p><strong>Tests completed:</strong> 0 passing,
+1 failing,
 0 errors,
-0 skipped,
+2 skipped,
 3 total.</p>
-<p><strong>Tests took:</strong> 3859ms.</p>
+<p><strong>Tests took:</strong> 1266ms.</p>
